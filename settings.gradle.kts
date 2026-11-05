@@ -24,3 +24,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "Mobile Development"
 include(":app")
+include(":multiscreenappwithanimationlr4")
+include(":lr4byguide")
