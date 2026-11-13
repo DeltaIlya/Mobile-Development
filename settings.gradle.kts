@@ -26,3 +26,4 @@ rootProject.name = "Mobile Development"
 include(":app")
 include(":multiscreenappwithanimationlr4")
 include(":lr4byguide")
+include(":applicationlr5")

@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.ColorStateList
 import android.util.AttributeSet
@@ -16,6 +17,7 @@ import android.view.animation.LinearInterpolator
 import android.view.animation.OvershootInterpolator
 import com.google.android.material.button.MaterialButton
 
+@SuppressLint("ClickableViewAccessibility")
 class AnimatedButton @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
