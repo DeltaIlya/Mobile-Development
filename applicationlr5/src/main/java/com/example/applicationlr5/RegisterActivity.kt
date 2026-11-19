@@ -10,6 +10,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.snackbar.Snackbar
 
 class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,8 +55,7 @@ class RegisterActivity : AppCompatActivity() {
 
             if (!db.checkLogin(user_name))
             {
-                val user_password_hash = user_password_raw.toMD5()
-                val success = db.insertData(user_name, user_password_hash)
+                val success = db.insertData(user_name, user_password_raw)
                 if (success)
                 {
                     Toast.makeText(this, "Регистрация ${user_name} прошла успешно", Toast.LENGTH_SHORT).show()
@@ -63,17 +63,13 @@ class RegisterActivity : AppCompatActivity() {
                     textedit_login.text.clear()
                     textedit_password.text.clear()
                     textedit_password_confirm.text.clear()
-
                 }
                 else
-                {
-                    Toast.makeText(this, "Ошибка заиси в базе данных", Toast.LENGTH_SHORT).show()
-                }
+                    Toast.makeText(this, "Ошибка записи в базе данных", Toast.LENGTH_SHORT).show()
             }
             else
-            {
                 Toast.makeText(this, "Данный логин уже используется", Toast.LENGTH_SHORT).show()
-            }
+
         }
 
         // Обработка нажатия на кнопку "Войти в систему"

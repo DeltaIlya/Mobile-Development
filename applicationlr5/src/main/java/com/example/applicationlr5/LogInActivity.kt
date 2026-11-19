@@ -10,6 +10,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.snackbar.Snackbar
 
 class LogInActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,7 +18,10 @@ class LogInActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_log_in)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            val systemBars = insets.getInsets(
+                WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime()
+            )
+
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
@@ -43,18 +47,24 @@ class LogInActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-
-            val user_password_hash = user_password_raw.toMD5()
-
-            if (db.checkUserPassword(user_name, user_password_hash))
+            if (db.checkUserPassword(user_name, user_password_raw))
             {
-                Toast.makeText(this, "Добро пожаловать, ${user_name}!", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, HomeActivity::class.java)
+                Toast.makeText(this, "Добро пожаловать, $user_name!", Toast.LENGTH_SHORT).show()
+
+                //Если админ
+                val intent: Intent
+                if (user_name == "admin")
+                    intent = Intent(this, AdminActivity::class.java)
+                else
+                    intent = Intent(this, HomeActivity::class.java)
+
                 intent.putExtra("USER_LOGIN", user_name)
                 // Очищаем стек экранов, чтобы нельзя было вернуться назад на экран входа
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
-            } else {
+            }
+            else
+            {
                 Toast.makeText(this, "Неверный логин или пароль", Toast.LENGTH_SHORT).show()
             }
         }
