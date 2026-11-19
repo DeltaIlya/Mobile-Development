@@ -1,5 +1,6 @@
 package com.example.applicationlr5
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -16,7 +17,7 @@ class RegisterActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_register)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
@@ -28,6 +29,7 @@ class RegisterActivity : AppCompatActivity() {
         val textedit_password_confirm = findViewById<EditText>(R.id.editText_ConfirmRegisterPassword)
         val button_register = findViewById<Button>(R.id.button_Register)
         val button_log_in = findViewById<Button>(R.id.button_Login)
+        val button_back = findViewById<Button>(R.id.button_Back)
 
         // Обработка нажатия на кнопку "Регистрация"
         button_register.setOnClickListener()
@@ -77,7 +79,15 @@ class RegisterActivity : AppCompatActivity() {
         // Обработка нажатия на кнопку "Войти в систему"
         button_log_in.setOnClickListener()
         {
-            // переход на страницу входа
+            val intent = Intent(this, LogInActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        // Обработка нажатия на кнопку "Назад"
+        button_back.setOnClickListener()
+        {
+            finish()
         }
     }
 }

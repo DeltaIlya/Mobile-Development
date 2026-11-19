@@ -7,11 +7,13 @@
     android:layout_height="match_parent"
     tools:context=".LogInActivity">
 
+    <!-- Область прокрутки от верха экрана до кнопки «Назад» -->
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/button_Back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -36,7 +38,7 @@
 
             <!-- Поле ввода логина -->
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout_RegisterLogin"
+                android:id="@+id/textInputLayout_Login"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -47,16 +49,16 @@
                 app:layout_constraintTop_toBottomOf="@id/textView_Title">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editText_RegisterLogin"
+                    android:id="@+id/editText_Login"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
                     android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Первое поле пароля -->
+            <!-- Поле пароля -->
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout_RegisterPassword"
+                android:id="@+id/textInputLayout_Password"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -65,30 +67,29 @@
                 app:endIconMode="password_toggle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textInputLayout_RegisterLogin">
+                app:layout_constraintTop_toBottomOf="@id/textInputLayout_Login">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editText_RegisterPassword"
+                    android:id="@+id/editText_Password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
                     android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Второе поле пароля (подтверждение) -->
-
-            <!-- Основная кнопка регистрации -->
+            <!-- Основная кнопка входа -->
             <Button
                 android:id="@+id/button_Login"
                 android:layout_width="0dp"
                 android:layout_height="56dp"
+                android:layout_marginTop="32dp"
                 android:text="Войти"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="376dp" />
+                app:layout_constraintTop_toBottomOf="@id/textInputLayout_Password" />
 
-            <!-- Второстепенная кнопка входа -->
+            <!-- Второстепенная кнопка перехода к регистрации -->
             <Button
                 android:id="@+id/button_Register"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
@@ -98,9 +99,22 @@
                 android:text="Зарегистрироваться"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/button_Register" />
+                app:layout_constraintTop_toBottomOf="@id/button_Login" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
+    <!-- Кнопка «Назад», закрепленная снизу -->
+    <Button
+        android:id="@+id/button_Back"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginBottom="16dp"
+        android:text="Назад"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

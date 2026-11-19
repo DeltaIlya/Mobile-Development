@@ -1,6 +1,9 @@
 package com.example.applicationlr5
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -15,6 +18,19 @@ class HomeActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        val button_back = findViewById<Button>(R.id.button_Back)
+        val textview_title = findViewById<TextView>(R.id.textView_Title)
+
+        val login = intent.getStringExtra("USER_LOGIN")
+
+        textview_title.text = ("Добро пожаловать, ${login}!")
+        button_back.setOnClickListener()
+        {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 }

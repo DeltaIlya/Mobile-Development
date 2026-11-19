@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
     <ScrollView
         android:layout_width="0dp"
@@ -21,104 +19,44 @@
             android:layout_height="wrap_content"
             android:padding="24dp">
 
-            <!-- Заголовок экрана -->
             <TextView
-                android:id="@+id/textView_Title"
-                android:layout_width="wrap_content"
+                android:id="@+id/textView_Welcome"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="Регистрация"
-                android:textSize="28sp"
+                android:gravity="center"
+                android:text="Добро пожаловать в приложение!"
+                android:textSize="24sp"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/button_ToLogin"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
 
-            <!-- Поле ввода логина -->
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout_RegisterLogin"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:hint="Логин"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textView_Title">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editText_RegisterLogin"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:maxLines="1" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <!-- Первое поле пароля -->
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout_RegisterPassword"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:hint="Пароль"
-                app:endIconMode="password_toggle"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textInputLayout_RegisterLogin">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editText_RegisterPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPassword"
-                    android:maxLines="1" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <!-- Второе поле пароля (подтверждение) -->
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout_ConfirmRegisterPassword"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:hint="Повторите пароль"
-                app:endIconMode="password_toggle"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textInputLayout_RegisterPassword">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editText_ConfirmRegisterPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPassword"
-                    android:maxLines="1" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <!-- Основная кнопка регистрации -->
             <Button
-                android:id="@+id/button_Register"
+                android:id="@+id/button_ToLogin"
                 android:layout_width="0dp"
                 android:layout_height="56dp"
                 android:layout_marginTop="32dp"
-                android:text="Регистрация"
+                android:text="Войти"
                 android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@id/button_ToRegister"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textInputLayout_ConfirmRegisterPassword" />
+                app:layout_constraintTop_toBottomOf="@id/textView_Welcome" />
 
-            <!-- Второстепенная кнопка входа -->
             <Button
-                android:id="@+id/button_Login"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:id="@+id/button_ToRegister"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:text="Войти в систему"
+                android:layout_height="56dp"
+                android:layout_marginTop="16dp"
+                android:text="Зарегистрироваться"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/button_Register" />
+                app:layout_constraintTop_toBottomOf="@id/button_ToLogin" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
