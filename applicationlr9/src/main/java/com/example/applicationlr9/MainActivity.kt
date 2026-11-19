@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity()
     private lateinit var textViewData: TextView
     private lateinit var buttonFetch: Button
 
-    // Замените эти значения на ваши из Google Таблицы и Google Cloud Console
     private val spreadsheetId = "1B5m_rCr2g1mxE6g75zLkAwZA30SMuirWr7oeH47GGjU"
     private val apiKey = "AIzaSyD3M-50TPfeB6dPpuHmXs15pI0S1kn9rdQ"
     private val range = "A1:C4"
