@@ -12,51 +12,50 @@ import androidx.core.content.ContextCompat
 import kotlin.math.atan2
 import kotlin.math.min
 
-/**
- * Кастомный View — анимированный компас с физикой затухающих колебаний.
- *
- * Физическая модель:
- *   acceleration = (-stiffness * angle - friction * angularVelocity) / inertia
- *   angularVelocity += acceleration * dt
- *   angle += angularVelocity * dt
- *
- * При касании пальцем стрелка следует за ним и запоминает скорость.
- * При отпускании — начинается затухание к положению "север" (0°).
- */
+// Физическая модель:
+//      acceleration = (-stiffness * angle - friction * angularVelocity) / inertia
+//      angularVelocity += acceleration * dt
+//      angle += angularVelocity * dt
+// При касании пальцем стрелка следует за ним и запоминает скорость.
+// При отпускании — начинается затухание к положению "север".
 class CompassView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : View(context, attrs, defStyleAttr) {
+) : View(context, attrs, defStyleAttr)
+{
 
-    // ==================== ФИЗИКА ====================
-    private var angle = 0f                    // Текущий угол отклонения от севера (°)
-    private var angularVelocity = 0f          // Угловая скорость (°/сек)
-    private var friction = 2.0f               // Коэффициент трения (демпфирование)
+    // ФИЗИКА
+    private var angle = 0f                    // Текущий угол отклонения от севера
+    private var angularVelocity = 0f          // Угловая скорость
+    private var friction = 2.0f               // Коэффициент трения
     private var inertia = 1.5f                // Инерционность
-    private val stiffness = 2.0f              // Жёсткость возврата к северу (константа)
+    private val stiffness = 2.0f              // Жёсткость возврата к северу
 
-    // ==================== СТИЛЬ ====================
+    // СТИЛЬ
     var dialStyle: DialStyle = DialStyle.CLASSIC
-        set(value) {
+        set(value)
+        {
             field = value
             updatePaintColors()
             invalidate()
         }
 
-    // ==================== КАСАНИЕ ====================
+    // КАСАНИЕ
     private var isDragging = false
     private var lastTouchAngle = 0f
     private var lastTouchTime = 0L
 
-    // ==================== ГРАФИКА (Paint) ====================
+    // ГРАФИКА
     private val paintDialFace = Paint(Paint.ANTI_ALIAS_FLAG)
-    private val paintDialBorder = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+    private val paintDialBorder = Paint(Paint.ANTI_ALIAS_FLAG).apply()
+    {
         style = Paint.Style.STROKE
         strokeWidth = 6f
     }
     private val paintTick = Paint(Paint.ANTI_ALIAS_FLAG)
-    private val paintText = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+    private val paintText = Paint(Paint.ANTI_ALIAS_FLAG).apply()
+    {
         textAlign = Paint.Align.CENTER
         textSize = 48f
         isFakeBoldText = true
@@ -66,49 +65,57 @@ class CompassView @JvmOverloads constructor(
     private val paintCenter = Paint(Paint.ANTI_ALIAS_FLAG)
     private val paintCenterHole = Paint(Paint.ANTI_ALIAS_FLAG)
 
-    // Путь для стрелки (переиспользуем для производительности)
+    // Путь для стрелки
     private val needlePath = Path()
 
-    // ==================== АНИМАЦИЯ ====================
+    // АНИМАЦИЯ
     private var animator: ValueAnimator? = null
     private var lastFrameTime = 0L
 
-    init {
+    init
+    {
         updatePaintColors()
         startAnimationLoop()
     }
 
-    // ==================== ПУБЛИЧНЫЙ API (вызывается из MainActivity) ====================
+    // ПУБЛИЧНЫЙ API
 
-    fun setFriction(value: Float) {
+    fun setFriction(value: Float)
+    {
         friction = value.coerceIn(0.1f, 10f)
     }
 
-    fun setInertia(value: Float) {
+    fun setInertia(value: Float)
+    {
         inertia = value.coerceIn(0.1f, 10f)
     }
 
-    fun resetCompass() {
+    fun resetCompass()
+    {
         angle = 0f
         angularVelocity = 0f
     }
 
-    // ==================== ИНИЦИАЛИЗАЦИЯ ЦВЕТОВ ====================
+    // ИНИЦИАЛИЗАЦИЯ ЦВЕТОВ
 
-    private fun updatePaintColors() {
-        when (dialStyle) {
-            DialStyle.CLASSIC, DialStyle.MINIMAL -> {
-                paintDialFace.color = ContextCompat.getColor(context, R.color.colorDialFace)
-                paintDialBorder.color = ContextCompat.getColor(context, R.color.colorDialBorder)
-                paintTick.color = ContextCompat.getColor(context, R.color.colorDialTick)
-                paintText.color = ContextCompat.getColor(context, R.color.colorDialLabel)
-            }
-            DialStyle.AVIATION -> {
-                paintDialFace.color = ContextCompat.getColor(context, R.color.colorAviationBg)
-                paintDialBorder.color = ContextCompat.getColor(context, R.color.colorAviationTick)
-                paintTick.color = ContextCompat.getColor(context, R.color.colorAviationTick)
-                paintText.color = ContextCompat.getColor(context, R.color.colorAviationLabel)
-            }
+    private fun updatePaintColors()
+    {
+        when (dialStyle)
+        {
+            DialStyle.CLASSIC, DialStyle.MINIMAL ->
+                {
+                    paintDialFace.color = ContextCompat.getColor(context, R.color.colorDialFace)
+                    paintDialBorder.color = ContextCompat.getColor(context, R.color.colorDialBorder)
+                    paintTick.color = ContextCompat.getColor(context, R.color.colorDialTick)
+                    paintText.color = ContextCompat.getColor(context, R.color.colorDialLabel)
+                }
+            DialStyle.AVIATION ->
+                {
+                    paintDialFace.color = ContextCompat.getColor(context, R.color.colorAviationBg)
+                    paintDialBorder.color = ContextCompat.getColor(context, R.color.colorAviationTick)
+                    paintTick.color = ContextCompat.getColor(context, R.color.colorAviationTick)
+                    paintText.color = ContextCompat.getColor(context, R.color.colorAviationLabel)
+                }
         }
         paintNeedleNorth.color = ContextCompat.getColor(context, R.color.colorNeedleNorth)
         paintNeedleSouth.color = ContextCompat.getColor(context, R.color.colorNeedleSouth)
@@ -116,9 +123,10 @@ class CompassView @JvmOverloads constructor(
         paintCenterHole.color = ContextCompat.getColor(context, R.color.colorCard)
     }
 
-    // ==================== ОТРИСОВКА ====================
+    // ОТРИСОВКА
 
-    override fun onDraw(canvas: Canvas) {
+    override fun onDraw(canvas: Canvas)
+    {
         super.onDraw(canvas)
 
         val cx = width / 2f
@@ -138,30 +146,35 @@ class CompassView @JvmOverloads constructor(
         drawCenterDot(canvas, cx, cy)
     }
 
-    private fun drawDialFace(canvas: Canvas, cx: Float, cy: Float, radius: Float) {
+    private fun drawDialFace(canvas: Canvas, cx: Float, cy: Float, radius: Float)
+    {
         // Внешний круг (фон)
         canvas.drawCircle(cx, cy, radius, paintDialFace)
         // Рамка
         canvas.drawCircle(cx, cy, radius, paintDialBorder)
     }
 
-    private fun drawTicksAndLabels(canvas: Canvas, cx: Float, cy: Float, radius: Float) {
+    private fun drawTicksAndLabels(canvas: Canvas, cx: Float, cy: Float, radius: Float)
+    {
         val tickLengthOuter = radius * 0.08f
         val tickLengthMajor = radius * 0.12f
         val labelRadius = radius * 0.78f
 
         // Определяем шаг делений в зависимости от стиля
-        val minorStep = when (dialStyle) {
-            DialStyle.CLASSIC -> 10       // каждые 10°
-            DialStyle.AVIATION -> 30      // каждые 30°
-            DialStyle.MINIMAL -> 90       // только 4 основных направления
+        val minorStep = when (dialStyle)
+        {
+            DialStyle.CLASSIC -> 10       // каждые 10 градусов
+            DialStyle.AVIATION -> 30      // каждые 30 градусов
+            DialStyle.MINIMAL -> 90       // каждые 90 градусов
         }
 
-        for (deg in 0 until 360 step minorStep) {
+        for (deg in 0 until 360 step minorStep)
+        {
             val isMajor = deg % 90 == 0
             val isMedium = deg % 30 == 0
 
-            val tickLength = when {
+            val tickLength = when
+            {
                 isMajor -> tickLengthMajor
                 isMedium -> tickLengthOuter * 0.7f
                 else -> tickLengthOuter * 0.5f
@@ -171,14 +184,15 @@ class CompassView @JvmOverloads constructor(
             val cos = Math.cos(angleRad).toFloat()
             val sin = Math.sin(angleRad).toFloat()
 
-            // Координаты начала и конца деления (сверху, у края циферблата)
+            // Координаты начала и конца деления
             val x1 = cx + (radius - 4f) * sin
             val y1 = cy - (radius - 4f) * cos
             val x2 = cx + (radius - 4f - tickLength) * sin
             val y2 = cy - (radius - 4f - tickLength) * cos
 
             // Толщина деления
-            paintTick.strokeWidth = when {
+            paintTick.strokeWidth = when
+            {
                 isMajor -> 4f
                 isMedium -> 2.5f
                 else -> 1.5f
@@ -187,15 +201,18 @@ class CompassView @JvmOverloads constructor(
             canvas.drawLine(x1, y1, x2, y2, paintTick)
 
             // Буквы N/S/E/W только на основных направлениях
-            if (isMajor && dialStyle != DialStyle.MINIMAL || dialStyle == DialStyle.MINIMAL) {
-                val label = when (deg) {
+            if (isMajor && dialStyle != DialStyle.MINIMAL || dialStyle == DialStyle.MINIMAL)
+            {
+                val label = when (deg)
+                {
                     0 -> "N"
                     90 -> "E"
                     180 -> "S"
                     270 -> "W"
                     else -> null
                 }
-                if (label != null) {
+                if (label != null)
+                {
                     val lx = cx + labelRadius * sin
                     val ly = cy - labelRadius * cos
                     // Для N — красный цвет
@@ -210,7 +227,8 @@ class CompassView @JvmOverloads constructor(
         }
     }
 
-    private fun drawNeedle(canvas: Canvas, cx: Float, cy: Float, radius: Float) {
+    private fun drawNeedle(canvas: Canvas, cx: Float, cy: Float, radius: Float)
+    {
         // Сохраняем состояние canvas и поворачиваем на текущий угол
         canvas.save()
         canvas.rotate(angle, cx, cy)
@@ -238,15 +256,17 @@ class CompassView @JvmOverloads constructor(
         canvas.restore()
     }
 
-    private fun drawCenterDot(canvas: Canvas, cx: Float, cy: Float) {
+    private fun drawCenterDot(canvas: Canvas, cx: Float, cy: Float)
+    {
         val dotRadius = 14f
         canvas.drawCircle(cx, cy, dotRadius, paintCenter)
         canvas.drawCircle(cx, cy, dotRadius * 0.5f, paintCenterHole)
     }
 
-    // ==================== ОБРАБОТКА КАСАНИЙ ====================
+    // ОБРАБОТКА КАСАНИЙ
 
-    override fun onTouchEvent(event: MotionEvent): Boolean {
+    override fun onTouchEvent(event: MotionEvent): Boolean
+    {
         when (event.actionMasked) {
             MotionEvent.ACTION_DOWN -> {
                 isDragging = true

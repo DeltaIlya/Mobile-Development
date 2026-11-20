@@ -7,12 +7,17 @@ import android.graphics.Canvas
 import android.graphics.Matrix
 import android.graphics.Paint
 
-interface SeasonStrategy {
-    // Безопасная загрузка картинки
-    fun loadBitmap(context: Context, resId: Int): Bitmap? {
-        return try {
+interface SeasonStrategy
+{
+    // загрузка картинки
+    fun loadBitmap(context: Context, resId: Int): Bitmap?
+    {
+        return try
+        {
             BitmapFactory.decodeResource(context.resources, resId)
-        } catch (e: Exception) {
+        }
+        catch (e: Exception)
+        {
             null
         }
     }

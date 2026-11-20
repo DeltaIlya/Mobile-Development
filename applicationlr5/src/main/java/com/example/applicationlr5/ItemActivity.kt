@@ -9,16 +9,20 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class ItemActivity : AppCompatActivity() {
+class ItemActivity : AppCompatActivity()
+{
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_item)
 
         // Обработка WindowInsets
         val rootView = findViewById<android.widget.ScrollView>(R.id.main)
-        ViewCompat.setOnApplyWindowInsetsListener(rootView) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(rootView)
+        {
+            v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
@@ -39,14 +43,14 @@ class ItemActivity : AppCompatActivity() {
         // Загружаем картинку по имени из drawable
         val imageName = intent.getStringExtra("itemImage") ?: ""
         val imageId = resources.getIdentifier(imageName, "drawable", packageName)
-        if (imageId != 0) {
+        if (imageId != 0)
             imageView.setImageResource(imageId)
-        } else {
+        else
             imageView.setImageResource(R.drawable.ic_launcher_foreground)
-        }
 
         // Кнопка Назад
-        buttonBack.setOnClickListener {
+        buttonBack.setOnClickListener()
+        {
             finish()
         }
     }

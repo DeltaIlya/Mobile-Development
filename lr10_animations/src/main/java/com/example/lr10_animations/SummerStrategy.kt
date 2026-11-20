@@ -12,26 +12,32 @@ class SummerStrategy(context: Context) : SeasonStrategy {
     override fun getSpawnChance() = 0.50f
     override fun getMaxParticlesCount() = 100
 
-    override fun setupNewParticle(particle: WeatherView.Particle, width: Int, centerY: Float) {
-        particle.speed = Random.nextFloat() * 9.0f + 9.0f
+    override fun setupNewParticle(particle: WeatherView.Particle, width: Int, centerY: Float)
+    {
+        particle.speed = Random.nextFloat() * 10.0f + 5.0f
         particle.angle = 0f
         particle.rotationSpeed = 0f
-        particle.size = Random.nextFloat() * 5.5f + 1.3f
-        particle.alpha = Random.nextInt(100, 200)
+        particle.size = Random.nextFloat() * 5f + 1f
+        particle.alpha = Random.nextInt(100, 255)
     }
 
-    override fun updateParticle(particle: WeatherView.Particle, globalTime: Float, height: Int, currentGroundLevel: Float) {
+    override fun updateParticle(particle: WeatherView.Particle, globalTime: Float, height: Int, currentGroundLevel: Float)
+    {
         particle.y += particle.speed * 2.0f
     }
 
-    override fun drawParticle(canvas: Canvas, particle: WeatherView.Particle, paint: Paint, matrix: Matrix) {
-        if (bitmap != null) {
+    override fun drawParticle(canvas: Canvas, particle: WeatherView.Particle, paint: Paint, matrix: Matrix)
+    {
+        if (bitmap != null)
+        {
             paint.alpha = particle.alpha
             matrix.reset()
             matrix.postScale(particle.size, particle.size, centerX, centerY)
             matrix.postTranslate(particle.x - centerX, particle.y - centerY)
             canvas.drawBitmap(bitmap, matrix, paint)
-        } else {
+        }
+        else
+        {
             paint.color = Color.parseColor("#4FC3F7")
             paint.alpha = particle.alpha
             paint.strokeWidth = 3f * particle.size

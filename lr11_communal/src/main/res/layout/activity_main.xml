@@ -10,7 +10,6 @@
     android:padding="24dp"
     tools:context=".MainActivity">
 
-    <!-- Тематическая иконка -->
     <ImageView
         android:id="@+id/imageViewIcon"
         android:layout_width="80dp"
@@ -22,7 +21,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Заголовок приложения (28sp, Bold) -->
     <TextView
         android:id="@+id/textViewTitle"
         android:layout_width="0dp"
@@ -37,7 +35,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageViewIcon" />
 
-    <!-- Поле ввода среднего чека -->
     <EditText
         android:id="@+id/editTextMonthlyBill"
         android:layout_width="0dp"
@@ -53,7 +50,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textViewTitle" />
 
-    <!-- Кнопка расчета -->
     <Button
         android:id="@+id/buttonCalculate"
         android:layout_width="0dp"
@@ -69,7 +65,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/editTextMonthlyBill" />
 
-    <!-- Поле вывода результата -->
     <TextView
         android:id="@+id/textViewResult"
         android:layout_width="0dp"
@@ -85,7 +80,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/buttonCalculate" />
 
-    <!-- Кнопка очистки -->
     <Button
         android:id="@+id/buttonClear"
         android:layout_width="0dp"

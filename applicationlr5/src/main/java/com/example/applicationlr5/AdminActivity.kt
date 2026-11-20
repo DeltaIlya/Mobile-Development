@@ -13,7 +13,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.snackbar.Snackbar
 
-class AdminActivity : AppCompatActivity() {
+class AdminActivity : AppCompatActivity()
+{
 
     private lateinit var db: DBHelper
     private lateinit var listView: ListView
@@ -26,7 +27,8 @@ class AdminActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_admin)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main))
-        { v, insets ->
+        {
+            v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
@@ -37,11 +39,14 @@ class AdminActivity : AppCompatActivity() {
         val button_back = findViewById<Button>(R.id.button_Back)
         val button_reset = findViewById<Button>(R.id.button_ResetDb)
 
-        button_reset.setOnClickListener {
+        button_reset.setOnClickListener()
+        {
             AlertDialog.Builder(this)
                 .setTitle("Сброс базы данных")
                 .setMessage("Все зарегистрированные пользователи будут удалены, а счетчик ID обнулится. Продолжить?")
-                .setPositiveButton("Сбросить") { _, _ ->
+                .setPositiveButton("Сбросить")
+                {
+                    _, _ ->
                     db.resetDatabase()
                     loadUserData()
                     Toast.makeText(this, "База данных успешно сброшена", Toast.LENGTH_SHORT).show()
@@ -104,14 +109,16 @@ class AdminActivity : AppCompatActivity() {
         }
     }
 
-    override fun onResume() {
+    override fun onResume()
+    {
         super.onResume()
         loadUserData()
     }
 
-    private fun loadUserData() {
+    private fun loadUserData()
+    {
         // Для отображения на экране загружаем красивый список без пропусков в ID
-                usersList = db.getAllUsersForDisplay()
+        usersList = db.getAllUsersForDisplay()
         adapter = ArrayAdapter(this,
             android.R.layout.simple_list_item_1, usersList)
         listView.adapter = adapter

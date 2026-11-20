@@ -11,7 +11,8 @@ import kotlin.random.Random
 
 class WeatherView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
-) : View(context, attrs, defStyleAttr) {
+) : View(context, attrs, defStyleAttr)
+{
 
     data class Particle(
         var x: Float = 0f,
@@ -40,52 +41,63 @@ class WeatherView @JvmOverloads constructor(
     private var lastSpawnTime = 0L
     private val spawnDelayMs = 1000L
 
-    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int)
+    {
         super.onSizeChanged(w, h, oldw, oldh)
         if (w > 0) heightMap = FloatArray(w)
     }
 
-    fun changeSeason(strategy: SeasonStrategy) {
+    fun changeSeason(strategy: SeasonStrategy)
+    {
         activeStrategy = strategy
         clearParticles()
     }
 
-    fun clearParticles() {
+    fun clearParticles()
+    {
         particles.clear()
         heightMap.fill(0f)
         invalidate()
     }
 
-    override fun onDraw(canvas: Canvas) {
+    override fun onDraw(canvas: Canvas)
+    {
         super.onDraw(canvas)
         globalTime += 0.02f
 
-        val flyingCount = particles.count { !it.isGrounded && !it.isDisappearing }
+        val flyingCount = particles.count(){ !it.isGrounded && !it.isDisappearing }
         val currentTime = System.currentTimeMillis()
 
-        if (flyingCount < activeStrategy.getMaxParticlesCount() && width > 0) {
-            if (currentTime - lastSpawnTime >= spawnDelayMs && Random.nextFloat() < activeStrategy.getSpawnChance()) {
+        if (flyingCount < activeStrategy.getMaxParticlesCount() && width > 0)
+        {
+            if (currentTime - lastSpawnTime >= spawnDelayMs && Random.nextFloat() < activeStrategy.getSpawnChance())
+            {
                 createNewParticle()
                 lastSpawnTime = currentTime
             }
         }
 
         val iterator = particles.iterator()
-        while (iterator.hasNext()) {
+        while (iterator.hasNext())
+        {
             val particle = iterator.next()
-            if (particle.alpha <= 0) {
+            if (particle.alpha <= 0)
+            {
                 iterator.remove()
                 continue
             }
 
             activeStrategy.drawParticle(canvas, particle, paint, matrix)
 
-            if (particle.isDisappearing) {
+            if (particle.isDisappearing)
+            {
                 particle.x += particle.vx
                 particle.y += particle.vy
                 particle.angle += particle.rotationSpeed * 2
                 particle.alpha -= 8
-            } else if (!particle.isGrounded) {
+            }
+            else if (!particle.isGrounded)
+            {
                 activeStrategy.updateParticle(particle, globalTime, height, 0f)
 
                 if (particle.x < 0) particle.x = 0f
@@ -94,7 +106,8 @@ class WeatherView @JvmOverloads constructor(
                 val currentX = particle.x.toInt().coerceIn(0, width - 1)
                 val currentGroundLevel = height.toFloat() - heightMap[currentX]
 
-                if (particle.y >= currentGroundLevel && particle.y > 0) {
+                if (particle.y >= currentGroundLevel && particle.y > 0)
+                {
                     particle.y = currentGroundLevel
                     particle.isGrounded = true
 
@@ -103,7 +116,8 @@ class WeatherView @JvmOverloads constructor(
                     val endX = (currentX + halfWidth).coerceIn(0, width - 1)
                     val thickness = activeStrategy.getThickness(particle)
 
-                    for (x in startX..endX) {
+                    for (x in startX..endX)
+                    {
                         if (heightMap[x] < height) heightMap[x] += thickness
                     }
                 }
@@ -112,30 +126,34 @@ class WeatherView @JvmOverloads constructor(
         invalidate()
     }
 
-    override fun onTouchEvent(event: MotionEvent): Boolean {
+    override fun onTouchEvent(event: MotionEvent): Boolean
+    {
         when (event.actionMasked) {
-            MotionEvent.ACTION_DOWN, MotionEvent.ACTION_MOVE -> {
+            MotionEvent.ACTION_DOWN, MotionEvent.ACTION_MOVE ->
+                {
                 val touchX = event.x
                 val touchY = event.y
                 val activeBitmap = getCurrentBitmap()
                 val dynamicBaseRadius = (activeBitmap.width + activeBitmap.height) / 3.5f
                 val currentRadius = dynamicBaseRadius + 60f
 
-                for (i in particles.indices.reversed()) {
+                for (i in particles.indices.reversed())
+                {
                     val leaf = particles[i]
                     if (leaf.isDisappearing) continue
 
                     val distance = sqrt((touchX - leaf.x).pow(2) + (touchY - leaf.y).pow(2))
-                    if (distance <= currentRadius) {
-                        if (leaf.isGrounded) {
+                    if (distance <= currentRadius)
+                    {
+                        if (leaf.isGrounded)
+                        {
                             val currentX = leaf.x.toInt().coerceIn(0, width - 1)
                             val halfWidth = (activeBitmap.width / 2f * leaf.size).toInt().coerceAtLeast(1)
                             val startX = (currentX - halfWidth).coerceIn(0, width - 1)
                             val endX = (currentX + halfWidth).coerceIn(0, width - 1)
                             val leafThickness = activeStrategy.getThickness(leaf)
-                            for (x in startX..endX) {
+                            for (x in startX..endX)
                                 heightMap[x] = (heightMap[x] - leafThickness).coerceAtLeast(0f)
-                            }
                         }
                         leaf.isGrounded = false
                         leaf.isDisappearing = true
@@ -150,7 +168,8 @@ class WeatherView @JvmOverloads constructor(
         return super.onTouchEvent(event)
     }
 
-    private fun createNewParticle() {
+    private fun createNewParticle()
+    {
         val activeBitmap = getCurrentBitmap()
         val offsetY = activeBitmap.height / 2f
         val p = Particle(x = Random.nextFloat() * width, y = -offsetY * 2)
@@ -158,8 +177,10 @@ class WeatherView @JvmOverloads constructor(
         particles.add(p)
     }
 
-    private fun getCurrentBitmap(): Bitmap {
-        return when (activeStrategy) {
+    private fun getCurrentBitmap(): Bitmap
+    {
+        return when (activeStrategy)
+        {
             is AutumnStrategy -> BitmapFactory.decodeResource(resources, context.resources.getIdentifier("ic_leaf", "drawable", context.packageName)) ?: Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888)
             is WinterStrategy -> BitmapFactory.decodeResource(resources, context.resources.getIdentifier("ic_snowflake", "drawable", context.packageName)) ?: Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888)
             is SummerStrategy -> BitmapFactory.decodeResource(resources, context.resources.getIdentifier("ic_raindrop", "drawable", context.packageName)) ?: Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888)

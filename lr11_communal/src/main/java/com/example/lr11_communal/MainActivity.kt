@@ -24,14 +24,12 @@ class MainActivity : AppCompatActivity()
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-        // 1. Сохраняем исходные padding'и из XML (24dp = ~63px на большинстве экранов)
         val rootView = findViewById<View>(R.id.main)
         val initialPaddingLeft = rootView.paddingLeft
         val initialPaddingTop = rootView.paddingTop
         val initialPaddingRight = rootView.paddingRight
         val initialPaddingBottom = rootView.paddingBottom
 
-// 2. Прибавляем системные отступы К ИСХОДНЫМ 24dp
         ViewCompat.setOnApplyWindowInsetsListener(rootView)
         {
             v, insets ->
@@ -63,12 +61,12 @@ class MainActivity : AppCompatActivity()
         }
     }
 
-    // Основная функция расчета годовых коммунальных платежей
+    // Функция расчета годовых коммунальных платежей
     // Итог = M * 12
     private fun calculateYearlyBill() {
         val inputString = inputField.text.toString().trim()
 
-        // 1. Валидация на пустое поле
+        // Валидация на пустое поле
         if (inputString.isEmpty())
         {
             Toast.makeText(
@@ -79,7 +77,7 @@ class MainActivity : AppCompatActivity()
             return
         }
 
-        // 2. Преобразование в число с защитой от некорректного ввода
+        // Преобразование в число с защитой от некорректного ввода
         val monthlyBill: Double = try
         {
             inputString.toDouble()
@@ -94,7 +92,7 @@ class MainActivity : AppCompatActivity()
             return
         }
 
-        // 3. Проверка на отрицательные значения
+        // Проверка на отрицательные значения
         if (monthlyBill < 0)
         {
             Toast.makeText(
@@ -105,16 +103,15 @@ class MainActivity : AppCompatActivity()
             return
         }
 
-        // 4. Расчет по формуле варианта 27: Итог = M * 12
+        // Расчет по формуле: Итог = M * 12
         val yearlyTotal = monthlyBill * 12
 
-        // 5. Вывод результата на экран
+        // Вывод результата на экран
         resultText.text = getString(R.string.result_formatted, yearlyTotal)
 
-        // 6. Дополнительное условие: если итог > 80000 → Toast
-        if (yearlyTotal > 80000) {
+        // Дополнительное условие: если итог > 80000 - вывести сообщение
+        if (yearlyTotal > 80000)
             Toast.makeText(this, getString(R.string.warning_high), Toast.LENGTH_LONG).show()
-        }
     }
 
     // Сброс всех полей в исходное состояние.

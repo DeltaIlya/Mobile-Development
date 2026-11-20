@@ -10,16 +10,20 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity()
+{
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
         // Обработка WindowInsets
         val rootView = findViewById<View>(R.id.mainLayout)
-        ViewCompat.setOnApplyWindowInsetsListener(rootView) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(rootView)
+        {
+            v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
@@ -44,31 +48,34 @@ class MainActivity : AppCompatActivity() {
         )
         weatherView.changeSeason(autumn)
 
-        // Клик "Осень"
-        btnAutumn.setOnClickListener {
+        // осень
+        btnAutumn.setOnClickListener()
+        {
             setBackgroundOrFallback(mainLayout, getString(R.string.bg_autumn), getString(R.string.color_autumn_fallback))
             weatherView.changeSeason(autumn)
         }
 
-        // Клик "Зима"
-        btnWinter.setOnClickListener {
+        // зима
+        btnWinter.setOnClickListener()
+        {
             setBackgroundOrFallback(mainLayout, getString(R.string.bg_winter), getString(R.string.color_winter_fallback))
             weatherView.changeSeason(winter)
         }
 
-        // Клик "Лето"
-        btnSummer.setOnClickListener {
+        // лето
+        btnSummer.setOnClickListener()
+        {
             setBackgroundOrFallback(mainLayout, getString(R.string.bg_summer), getString(R.string.color_summer_fallback))
             weatherView.changeSeason(summer)
         }
     }
 
-    private fun setBackgroundOrFallback(layout: ConstraintLayout, imageName: String, fallbackColor: String) {
+    private fun setBackgroundOrFallback(layout: ConstraintLayout, imageName: String, fallbackColor: String)
+    {
         val resId = resources.getIdentifier(imageName, "drawable", packageName)
-        if (resId != 0) {
+        if (resId != 0)
             layout.setBackgroundResource(resId)
-        } else {
+        else
             layout.setBackgroundColor(Color.parseColor(fallbackColor))
-        }
     }
 }
