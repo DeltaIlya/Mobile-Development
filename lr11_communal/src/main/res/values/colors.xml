@@ -3,10 +3,15 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <!-- Кастомные цвета приложения -->
-    <color name="colorPrimary">#1976D2</color>        <!-- Основной синий -->
-    <color name="colorBackground">#E3F2FD</color>    <!-- Светло-голубой фон экрана -->
-    <color name="colorAccent">#FF6F00</color>        <!-- Оранжевый акцент для кнопок -->
-    <color name="colorTextDark">#212121</color>      <!-- Темный текст -->
-    <color name="colorResult">#C62828</color>        <!-- Красный для результата -->
+    <!-- ===== Единая палитра (из ЛР 12 и 13) ===== -->
+    <color name="colorPrimary">#AD1457</color>          <!-- Тёмно-розовый (основной, обводка полей, кнопка "Очистить") -->
+    <color name="colorBackground">#FCE4EC</color>       <!-- Нежно-розовый фон всего экрана -->
+    <color name="colorAccent">#F06292</color>           <!-- Яркий розовый акцент (кнопка "Рассчитать") -->
+    <color name="colorCard">#FFFFFF</color>             <!-- Белый (фон карточек/результата) -->
+    <color name="colorTextDark">#212121</color>         <!-- Тёмный текст (заголовки) -->
+    <color name="colorTextSecondary">#757575</color>    <!-- Вторичный текст (подсказки в полях) -->
+    <color name="colorWarning">#FF6F00</color>          <!-- Оранжевый (для предупреждений) -->
+
+    <!-- ===== Специфичные для ЛР 11 ===== -->
+    <color name="colorResult">#C62828</color>           <!-- Красный (для выделения поля результата, как в ТЗ) -->
 </resources>
