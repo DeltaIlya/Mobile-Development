@@ -2,4 +2,17 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Кастомные цвета -->
+    <color name="colorPrimary">#AD1457</color>         <!-- Тёмно-розовый (основной) -->
+    <color name="colorPrimaryVariant">#C2185B</color>  <!-- Чуть светлее -->
+    <color name="colorBackground">#FCE4EC</color>      <!-- Нежно-розовый фон -->
+    <color name="colorAccent">#F06292</color>          <!-- Акцент для кнопок -->
+    <color name="colorCard">#FFFFFF</color>            <!-- Фон карточек -->
+    <color name="colorTextDark">#212121</color>        <!-- Тёмный текст -->
+    <color name="colorTextSecondary">#757575</color>   <!-- Вторичный текст -->
+    <color name="colorWarning">#FF6F00</color>         <!-- Оранжевый для предупреждений -->
+    <color name="colorPrice">#6A1B9A</color>           <!-- Фиолетовый для цены -->
+
+    <color name="colorOutday">#C62828</color>
 </resources>

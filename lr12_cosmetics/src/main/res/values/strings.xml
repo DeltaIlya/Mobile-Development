@@ -1,3 +1,42 @@
 <resources>
-    <string name="app_name">LR12_Cosmetics</string>
+    <string name="app_name">Хендмейд Косметика</string>
+
+    <!-- Авторизация -->
+    <string name="title_auth">Авторизация</string>
+    <string name="title_register">Регистрация</string>
+    <string name="title_admin">Панель администратора</string>
+    <string name="title_edit">Редактирование профиля</string>
+    <string name="title_catalog">Каталог косметики</string>
+    <string name="title_add_item">Добавить товар</string>
+
+    <!-- Подсказки -->
+    <string name="hint_login">Логин</string>
+    <string name="hint_password">Пароль</string>
+    <string name="hint_new_login">Новый логин</string>
+    <string name="hint_new_password">Новый пароль</string>
+    <string name="hint_item_title">Название товара</string>
+    <string name="hint_item_desc">Краткое описание</string>
+    <string name="hint_item_text">Полное описание</string>
+    <string name="hint_item_price">Цена (₽)</string>
+    <string name="hint_shelf_life">Срок годности (дней с даты создания)</string>
+
+    <!-- Кнопки -->
+    <string name="btn_login">Войти</string>
+    <string name="btn_register">Зарегистрироваться</string>
+    <string name="btn_save">Сохранить</string>
+    <string name="btn_back">Назад</string>
+    <string name="btn_choose_image">Выбрать изображение</string>
+    <string name="btn_add_item">Добавить товар</string>
+
+    <!-- Сообщения -->
+    <string name="text_no_account">Нет аккаунта? Зарегистрироваться</string>
+    <string name="text_admin_help">Клик — изменить, долгое нажатие — удалить</string>
+    <string name="error_empty_fields">Заполните все поля!</string>
+    <string name="error_login_taken">Логин уже занят!</string>
+    <string name="error_wrong_credentials">Неверный логин или пароль</string>
+    <string name="success_registration">Регистрация успешна!</string>
+    <string name="success_item_added">Товар добавлен!</string>
+    <string name="warning_expiring_soon">Срок годности скоро истекает!</string>
+    <string name="text_valid_until">Годен до: %1$s</string>
+    <string name="text_price_formatted">%1$d ₽</string>
 </resources>
