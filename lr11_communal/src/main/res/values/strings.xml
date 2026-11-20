@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Коммунальные платежи</string>
+
+    <!-- Заголовки -->
+    <string name="title_main">Годовые коммунальные платежи</string>
+
+    <!-- Подсказки полей -->
+    <string name="hint_monthly_bill">Средний чек за месяц (₽)</string>
+    <string name="result_default">Итог за год: —</string>
+
+    <!-- Кнопки -->
+    <string name="btn_calculate">Рассчитать</string>
+    <string name="btn_clear">Очистить</string>
+
+    <!-- Сообщения Toast -->
+    <string name="error_empty">Пожалуйста, заполните поле!</string>
+    <string name="error_invalid">Введите корректную сумму!</string>
+    <string name="warning_high">Большие расходы на ЖКХ!</string>
+    <string name="result_formatted">Итог за год: %1$.2f ₽</string>
+</resources>
