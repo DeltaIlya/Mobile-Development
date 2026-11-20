@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Симуляция Сезонов</string>
+    <string name="btn_autumn">Осень</string>
+    <string name="btn_winter">Зима</string>
+    <string name="btn_summer">Лето</string>
+
+    <!-- Имена файлов фонов (без расширения) -->
+    <string name="bg_autumn">fall_town</string>
+    <string name="bg_winter">winter_town</string>
+    <string name="bg_summer">summer_town</string>
+
+
+    <!-- Резервные цвета, если картинок нет -->
+    <string name="color_autumn_fallback">#2E1C0C</string>
+    <string name="color_winter_fallback">#102027</string>
+    <string name="color_summer_fallback">#1A237E</string>
+</resources>

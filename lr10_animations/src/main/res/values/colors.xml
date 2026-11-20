@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Фоны для сезонов -->
+    <color name="bg_autumn">#2E1C0C</color>
+    <color name="bg_winter">#102027</color>
+    <color name="bg_summer">#1A237E</color>
+
+    <!-- Цвета частиц (для резервного режима) -->
+    <color name="leaf_orange">#E65100</color>
+    <color name="leaf_yellow">#FBC02D</color>
+    <color name="leaf_red">#D84315</color>
+    <color name="rain_blue">#4FC3F7</color>
+
+    <!-- Резервные цвета, если картинок нет -->
+    <color name="color_autumn_fallback">#2E1C0C</color>
+    <color name="color_winter_fallback">#102027</color>
+    <color name="color_summer_fallback">#1A237E</color>
+</resources>
