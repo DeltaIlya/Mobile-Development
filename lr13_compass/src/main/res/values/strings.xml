@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Анимированный компас</string>
+
+    <!-- Заголовки -->
+    <string name="title_main">Навигационный компас</string>
+    <string name="subtitle">Коснитесь и вращайте стрелку</string>
+
+    <!-- Параметры UI -->
+    <string name="label_friction">Коэффициент трения</string>
+    <string name="label_inertia">Инерционность стрелки</string>
+    <string name="label_style">Стиль циферблата</string>
+
+    <!-- Стили -->
+    <string name="style_classic">Классика</string>
+    <string name="style_aviation">Авиация</string>
+    <string name="style_minimal">Минимализм</string>
+
+    <!-- Кнопки -->
+    <string name="btn_reset">Сброс параметров</string>
+
+    <!-- Значения по умолчанию -->
+    <string name="default_friction">2.0</string>
+    <string name="default_inertia">1.5</string>
+    <string name="format_friction">Трение: %.1f</string>
+    <string name="format_inertia">Инерция: %.1f</string>
+    <string name="format_angle">Угол: %.0f°</string>
+</resources>

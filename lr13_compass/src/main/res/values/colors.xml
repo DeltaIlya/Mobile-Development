@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- ===== Базовая палитра (единый дизайн-код с ЛР 12) ===== -->
+    <color name="colorPrimary">#AD1457</color>          <!-- Тёмно-розовый (основной) -->
+    <color name="colorPrimaryVariant">#C2185B</color>   <!-- Чуть светлее -->
+    <color name="colorBackground">#FCE4EC</color>       <!-- Нежно-розовый фон -->
+    <color name="colorAccent">#F06292</color>           <!-- Акцент для кнопок/слайдеров -->
+    <color name="colorCard">#FFFFFF</color>             <!-- Фон карточек/панели -->
+    <color name="colorTextDark">#212121</color>         <!-- Тёмный текст -->
+    <color name="colorTextSecondary">#757575</color>    <!-- Вторичный текст -->
+    <color name="colorWarning">#FF6F00</color>          <!-- Оранжевый -->
+
+    <!-- ===== Специфичные для компаса ===== -->
+    <color name="colorDialFace">#FAFAFA</color>         <!-- Фон циферблата (классика) -->
+    <color name="colorDialBorder">#AD1457</color>       <!-- Рамка циферблата -->
+    <color name="colorDialTick">#424242</color>         <!-- Цвет делений шкалы -->
+    <color name="colorDialLabel">#212121</color>        <!-- Цвет букв N/S/E/W -->
+    <color name="colorNeedleNorth">#D32F2F</color>      <!-- Северная часть стрелки -->
+    <color name="colorNeedleSouth">#37474F</color>      <!-- Южная часть стрелки -->
+    <color name="colorCenterDot">#AD1457</color>        <!-- Центральная точка -->
+    <color name="colorAviationBg">#1C1C1E</color>       <!-- Тёмный фон (авиация) -->
+    <color name="colorAviationTick">#E0E0E0</color>     <!-- Светлые деления (авиация) -->
+    <color name="colorAviationLabel">#FFFFFF</color>    <!-- Белые буквы (авиация) -->
+</resources>

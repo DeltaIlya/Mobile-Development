@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    tools:context=".MainActivity">
+
+    <!-- Кастомный CompassView на весь экран -->
+    <com.example.lr13_compass.CompassView
+        android:id="@+id/compassView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- Плавающая кнопка для разворачивания панели (появляется когда панель скрыта) -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabOpenPanel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="24dp"
+        android:contentDescription="Открыть настройки"
+        android:src="@android:drawable/ic_menu_preferences"
+        android:visibility="gone"
+        app:backgroundTint="@color/colorPrimary"
+        app:tint="@color/white" />
+
+    <!-- Полупрозрачная панель управления снизу -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/controlPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_margin="16dp"
+        app:cardBackgroundColor="#CCFFFFFF"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="0dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <!-- Шапка панели с кнопкой "Свернуть" -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/title_main"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="@string/subtitle"
+                            android:textColor="@color/colorTextSecondary"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <!-- Кнопка сворачивания панели -->
+                    <ImageButton
+                        android:id="@+id/buttonCollapse"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="Свернуть"
+                        android:src="@android:drawable/arrow_down_float"
+                        app:tint="@color/colorPrimary" />
+                </LinearLayout>
+
+                <!-- Divider -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="12dp"
+                    android:background="#33AD1457" />
+
+                <!-- Slider: Коэффициент трения -->
+                <TextView
+                    android:id="@+id/textFrictionLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_friction"
+                    android:textColor="@color/colorTextDark"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textFrictionValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/default_friction"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="13sp" />
+
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/sliderFriction"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:stepSize="0.1"
+                    android:value="2.0"
+                    android:valueFrom="0.1"
+                    android:valueTo="10.0"
+                    app:thumbColor="@color/colorAccent"
+                    app:trackColorActive="@color/colorAccent"
+                    app:trackColorInactive="#F8BBD0" />
+
+                <!-- Slider: Инерционность -->
+                <TextView
+                    android:id="@+id/textInertiaLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/label_inertia"
+                    android:textColor="@color/colorTextDark"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textInertiaValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/default_inertia"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="13sp" />
+
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/sliderInertia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:stepSize="0.1"
+                    android:value="1.5"
+                    android:valueFrom="0.1"
+                    android:valueTo="10.0"
+                    app:thumbColor="@color/colorAccent"
+                    app:trackColorActive="@color/colorAccent"
+                    app:trackColorInactive="#F8BBD0" />
+
+                <!-- ChipGroup: Стиль циферблата -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/label_style"
+                    android:textColor="@color/colorTextDark"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroupStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:selectionRequired="true"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipClassic"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="@string/style_classic"
+                        app:checkedIconVisible="true" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipAviation"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/style_aviation"
+                        app:checkedIconVisible="true" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipMinimal"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/style_minimal"
+                        app:checkedIconVisible="true" />
+
+                </com.google.android.material.chip.ChipGroup>
+
+                <!-- Кнопка сброса -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonReset"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/btn_reset"
+                    android:textColor="@color/white"
+                    app:backgroundTint="@color/colorPrimary"
+                    app:cornerRadius="12dp" />
+
+            </LinearLayout>
+        </ScrollView>
+    </androidx.cardview.widget.CardView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
