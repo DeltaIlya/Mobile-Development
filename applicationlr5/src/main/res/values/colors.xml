@@ -2,4 +2,12 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Кастомные цвета для каталога -->
+    <color name="colorPrimary">#AD1457</color>          <!-- Тёмно-розовый (основной) -->
+    <color name="colorBackground">#FCE4EC</color>       <!-- Нежно-розовый фон -->
+    <color name="colorAccent">#F06292</color>           <!-- Акцент для кнопок -->
+    <color name="colorTextDark">#212121</color>         <!-- Тёмный текст -->
+    <color name="colorTextSecondary">#757575</color>    <!-- Вторичный текст -->
+    <color name="colorPrice">#6A1B9A</color>            <!-- Фиолетовый для цены -->
 </resources>

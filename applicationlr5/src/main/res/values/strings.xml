@@ -1,21 +1,22 @@
 <resources>
-    <string name="app_name">Admin SQLite App</string>
+    <string name="app_name">Магазин и Админ-Панель</string>
     <string name="title_auth">Авторизация</string>
     <string name="title_register">Регистрация</string>
     <string name="title_admin">Панель администратора</string>
     <string name="title_edit">Редактирование профиля</string>
-
     <string name="hint_login">Введите логин</string>
     <string name="hint_password">Введите пароль</string>
     <string name="hint_new_login">Новый логин</string>
     <string name="hint_new_password">Новый пароль</string>
-    <string name="hint_confirm_password">Подтвердите пароль</string>
-
     <string name="btn_login">Войти</string>
     <string name="btn_register">Зарегистрироваться</string>
     <string name="btn_save">Сохранить изменения</string>
     <string name="btn_back">Назад</string>
-
-    <string name="text_no_account">Еще нет аккаунта? Зарегистрируйтесь</string>
+    <string name="text_no_account">Еще нет аккаунта? Зарегистрироваться</string>
     <string name="text_admin_help">Клик — изменить, долгое нажатие — удалить</string>
+
+    <!-- Новые строки для каталога -->
+    <string name="title_catalog">Каталог товаров</string>
+    <string name="btn_view_details">Посмотреть</string>
+    <string name="btn_buy">Купить</string>
 </resources>

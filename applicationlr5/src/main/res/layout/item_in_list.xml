@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginBottom="16dp"
+    android:background="@color/white"
+    android:elevation="4dp"
+    android:paddingBottom="16dp">
+
+    <!-- Изображение товара -->
+    <ImageView
+        android:id="@+id/itemListImage"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:scaleType="centerCrop"
+        android:contentDescription="Фото товара" />
+
+    <!-- Название товара -->
+    <TextView
+        android:id="@+id/itemListTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="4dp"
+        android:text="Название товара"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorTextDark" />
+
+    <!-- Краткое описание товара -->
+    <TextView
+        android:id="@+id/itemListDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        android:text="Краткое описание товара..."
+        android:textSize="14sp"
+        android:textColor="@color/colorTextSecondary" />
+
+    <!-- Статус товара (контрольное задание вариант 6) -->
+    <TextView
+        android:id="@+id/itemListStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="4dp"
+        android:text="В наличии"
+        android:textColor="#2E7D32"
+        android:textSize="13sp"
+        android:textStyle="bold" />
+
+    <!-- Цена товара -->
+    <TextView
+        android:id="@+id/itemListPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="4dp"
+        android:gravity="end"
+        android:text="0 ₽"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrice" />
+
+    <!-- Кнопка перехода к подробностям -->
+    <Button
+        android:id="@+id/itemListButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorAccent"
+        android:text="@string/btn_view_details"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:backgroundTint="@null" />
+
+</LinearLayout>
